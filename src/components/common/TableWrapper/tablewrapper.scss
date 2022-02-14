@@ -6,13 +6,8 @@
         width: 100%;
         padding-top: 0px;
 
-        .header:first-child {
-            text-align: left !important;
-            padding-right: 0px !important;
-            padding-left: 0px !important;
-            padding-bottom: 30px !important;
-        }
         .header {
+            text-align: left;
             color: #757575;
             font-size: 13px;
             font-weight: 500;
@@ -31,6 +26,8 @@
             color: #292f36;
         }
         .element {
+            text-align: left;
+
             font-size: 15px;
             border-bottom: 1px solid #e2e2e2;
             padding: 15px 0px;
@@ -42,6 +39,11 @@
                 cursor: pointer;
                 background-color:  #F2F2F2;
                 transition: 0.5s;
+            }
+            .delete-icon{
+                cursor: pointer;
+                width: 15px;
+                height: 15px;
             }
         }
 

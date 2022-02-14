@@ -8,20 +8,17 @@
  * @returns  response json
  */
 
-export default async function customFetch(url, method = "GET", bodyReq = null, params = null, token = null) {
+export default async function customFetch(url, method = "GET", bodyReq = null, params = null) {
     if (!url) return { error: "invalid url" };
     // const finalUrl = token ? url + `?access_token=${token}` : url;
     const finalUrl = params ? url + "/" + params : url;
-    //console.log('url', finalUrl)
+    console.log('url', finalUrl)
     let response;
     response = await fetch(finalUrl, {
         method,
         // params:  params ? JSON.stringify(params) : null,
-        body: bodyReq ? JSON.stringify(bodyReq) : null,
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token
-        }
+        body: bodyReq ? JSON.stringify(bodyReq) : null
+        
     });
     let jsonResponse = response;
     if (response.headers && response.headers.get("Content-Type")) {
