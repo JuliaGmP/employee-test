@@ -1,7 +1,6 @@
 import React from "react";
 import Layout from "./layouts/Layout";
 
-import EmployeeDetail from "./components/employeeDetail/container/EmployeeDetail";
 import EmployeeForm from "./components/employeeForm/container/EmployeeForm";
 import EmployeeList from "./components/employeeList/container/EmployeeList";
 
@@ -21,9 +20,6 @@ function App() {
                 </Route>
                 <Route path="/employee-form">
                     <EmployeeForm />
-                </Route>
-                <Route path="/employee-detail">
-                    <EmployeeDetail />
                 </Route>
               </Layout>
             </Switch>
