@@ -20,7 +20,7 @@ const EmployeeFormComponent = (props) => {
     const schema = Yup.object({
         name: Yup.string().required("Required"),
         salary: Yup.number().required("Required").typeError("Must be a number").min(0, "Must be greater than 0"),
-        age: Yup.number().required("Required").typeError("Must be a number").min(0, "Must be greater than 100").max(100, "Must be less than 0"),      
+        age: Yup.number().required("Required").typeError("Must be a number").min(0, "Must be greater than 0").max(100, "Must be less than 100"),      
     });
 
     return (

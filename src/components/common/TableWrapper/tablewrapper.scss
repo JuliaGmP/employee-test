@@ -26,12 +26,12 @@
             color: #292f36;
         }
         .element {
-            text-align: left;
 
             font-size: 15px;
             border-bottom: 1px solid #e2e2e2;
             padding: 15px 0px;
             color: #757575;
+
             &.center{
                 text-align: center;
             }
@@ -41,6 +41,7 @@
                 transition: 0.5s;
             }
             .delete-icon{
+                margin-right: 10px;
                 cursor: pointer;
                 width: 15px;
                 height: 15px;
