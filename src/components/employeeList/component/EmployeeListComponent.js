@@ -47,7 +47,14 @@ const EmployeeListComponent = (props) => {
                             <td className="element">{item.profile_image}</td>
                             <td className="element">
                                 <img className="delete-icon" onClick={()=>{handleDelete(item.id)}} src={require("../../../assets/bin.png")} alt="" />
-                                <img className="delete-icon" onClick={()=>{}} src={require("../../../assets/editPencilIcon.png")} alt="" />
+                                <img className="delete-icon" 
+                                    onClick={()=>{history.push({
+                                        pathname: '/employee-form',
+                                        state: { employeeToEdit: item }
+                                      })}
+                                    }
+                                    src={require("../../../assets/editPencilIcon.png")} 
+                                    alt="" />
                             </td>
                         </tr>
                   )})

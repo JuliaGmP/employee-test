@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from "react";
 import EmployeeFormComponent from "../component/EmployeeFormComponent";
-import { addEmployee } from '../../../services/employees'
+import { addEmployee, editEmployee } from '../../../services/employees'
 import { withRouter } from "react-router-dom";
 
 const EmployeeForm = (props) => {
+    const [employeeToEdit, setEmployeeToEdit] = useState(undefined);
+
+    useEffect(() => {
+        if(props.location.state)setEmployeeToEdit(props.location.state.employeeToEdit)
+    }, [props.location]);
+
     const [submitError, setSubmitError] = useState(false);
+    console.log(employeeToEdit)
 
     const submit = async ({ name, salary, age}) => {
         try {
@@ -14,9 +21,14 @@ const EmployeeForm = (props) => {
                 age: age
               };
             let response;
-            response = await addEmployee(employeeData);
-            console.log(response)
+            if(employeeToEdit) {
+                response = await editEmployee(employeeToEdit.id);
+                console.log(response)
+            } else {
+                response = await addEmployee(employeeData);
+            }
             if(response.status !== "success") throw new Error('Error');
+            setEmployeeToEdit(undefined)
             props.history.push("/employee-list")
         } catch (e) {
             setSubmitError(true)
@@ -25,7 +37,7 @@ const EmployeeForm = (props) => {
         }
     };
 
-    return <EmployeeFormComponent submit={submit} history={props.history} submitError={submitError}/>;
+    return <EmployeeFormComponent submit={submit} history={props.history} submitError={submitError} employeeToEdit={employeeToEdit}/>;
 };
 
 export default withRouter(EmployeeForm)

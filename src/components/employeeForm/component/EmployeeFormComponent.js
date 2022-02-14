@@ -9,12 +9,12 @@ import Button from "../../common/Button/Button";
 
 const EmployeeFormComponent = (props) => {
 
-    const { submit, history, submitError } = props;
+    const { submit, history, submitError, employeeToEdit } = props;
 
     const initialValues = {
-        name: "",
-        salary: "",
-        age: ""
+        name: employeeToEdit ? employeeToEdit.employee_name : "",
+        salary: employeeToEdit ? employeeToEdit.employee_salary : "",
+        age: employeeToEdit ? employeeToEdit.employee_age : ""
     };
 
     const schema = Yup.object({
