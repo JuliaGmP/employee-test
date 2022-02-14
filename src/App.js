@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Layout from "./layouts/Layout";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import EmployeeDetail from "./components/employeeDetail/container/EmployeeDetail";
+import EmployeeForm from "./components/employeeForm/container/EmployeeForm";
+import EmployeeList from "./components/employeeList/container/EmployeeList";
+
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+
+function App() {    
+    return (
+      <Router>
+        <div className="App">
+            <Switch>
+              <Layout>
+                <Route path="/" exact={true}>
+                    <Redirect to="/employee-list" />
+                </Route>
+                <Route path="/employee-list">
+                    <EmployeeList />
+                </Route>
+                <Route path="/employee-form">
+                    <EmployeeForm />
+                </Route>
+                <Route path="/employee-detail">
+                    <EmployeeDetail />
+                </Route>
+              </Layout>
+            </Switch>
+        </div>
+      </Router>
+    );
 }
 
 export default App;
+
