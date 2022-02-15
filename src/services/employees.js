@@ -17,7 +17,8 @@ export async function addEmployee(employeeData) {
 }
 
 export async function editEmployee(id, employeeData) {
-    let response = await fetch(endpoints.updateEmployee + `/${id}`, "PATCH", employeeData);
+    console.log(employeeData)
+    let response = await fetch(endpoints.updateEmployee + `/${id}`, "PUT", employeeData);
     return response;
 }
 

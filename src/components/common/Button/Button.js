@@ -8,7 +8,7 @@ const ButtonComponent = (props) => {
         <button className={`button-component ${disabled && "disable"} ${className}`} onClick={(e) => onPress && onPress(e)} disabled={disabled || loading} type={type} style={props.style}>
             <div style={{paddingRight:10, paddingLeft:10, alignItems:"center", display:"flex", justifyContent:"center"}}>
                 { icon && <img className="icon" src={require("../../../assets/" + icon)} alt="" />}
-                {text}
+                {loading ? 'Loading...' : text}
             </div> 
         </button>
     );

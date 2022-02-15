@@ -9,7 +9,7 @@ import Button from "../../common/Button/Button";
 
 const EmployeeFormComponent = (props) => {
 
-    const { submit, history, submitError, employeeToEdit } = props;
+    const { submit, history, submitError, employeeToEdit, loading } = props;
 
     const initialValues = {
         name: employeeToEdit ? employeeToEdit.employee_name : "",
@@ -64,7 +64,7 @@ const EmployeeFormComponent = (props) => {
                             </div>    
                             <div className="button-wrapper">
                                 <Button className="cancel button" text={"Cancel"} onPress={()=>history.push("/employee-list")}/>
-                                <Button type="submit" className="button" text={"Save"} onPress={()=>formik.handleSubmit()}/> 
+                                <Button loading={loading} type="submit" className="button" text={"Save"} onPress={()=>formik.handleSubmit()}/> 
                             </div>
                             {submitError && <div className="submit-error">{`Submit error. ${submitError}`}</div>}
                         </div>)

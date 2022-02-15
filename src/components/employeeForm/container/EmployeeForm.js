@@ -5,15 +5,16 @@ import { withRouter } from "react-router-dom";
 
 const EmployeeForm = (props) => {
     const [employeeToEdit, setEmployeeToEdit] = useState(undefined);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if(props.location.state)setEmployeeToEdit(props.location.state.employeeToEdit)
     }, [props.location]);
 
     const [submitError, setSubmitError] = useState(false);
-    console.log(employeeToEdit)
 
     const submit = async ({ name, salary, age}) => {
+        setLoading(true)
         try {
             const employeeData = {
                 name: name,
@@ -22,7 +23,7 @@ const EmployeeForm = (props) => {
               };
             let response;
             if(employeeToEdit) {
-                response = await editEmployee(employeeToEdit.id);
+                response = await editEmployee(employeeToEdit.id, employeeData);
                 console.log(response)
             } else {
                 response = await addEmployee(employeeData);
@@ -33,11 +34,11 @@ const EmployeeForm = (props) => {
         } catch (e) {
             setSubmitError(e)
             console.log('error', e);
-            return;        
         }
+        setLoading(false)
     };
 
-    return <EmployeeFormComponent submit={submit} history={props.history} submitError={submitError} employeeToEdit={employeeToEdit}/>;
+    return <EmployeeFormComponent loading={loading} submit={submit} history={props.history} submitError={submitError} employeeToEdit={employeeToEdit}/>;
 };
 
 export default withRouter(EmployeeForm)
