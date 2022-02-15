@@ -27,11 +27,11 @@ const EmployeeForm = (props) => {
             } else {
                 response = await addEmployee(employeeData);
             }
-            if(response.status !== "success") throw new Error('Error');
+            if(response.status !== "success") throw new Error(response.statusText);
             setEmployeeToEdit(undefined)
             props.history.push("/employee-list")
         } catch (e) {
-            setSubmitError(true)
+            setSubmitError(e)
             console.log('error', e);
             return;        
         }

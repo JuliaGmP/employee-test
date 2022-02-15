@@ -13,14 +13,14 @@ const EmployeeFormComponent = (props) => {
 
     const initialValues = {
         name: employeeToEdit ? employeeToEdit.employee_name : "",
-        salary: employeeToEdit ? employeeToEdit.employee_salary : "",
-        age: employeeToEdit ? employeeToEdit.employee_age : ""
+        salary: employeeToEdit ? employeeToEdit.employee_salary : 0,
+        age: employeeToEdit ? employeeToEdit.employee_age : 0
     };
 
     const schema = Yup.object({
         name: Yup.string().required("Required"),
-        salary: Yup.number().required("Required").typeError("Must be a number").min(0, "Must be greater than 0"),
-        age: Yup.number().required("Required").typeError("Must be a number").min(0, "Must be greater than 0").max(100, "Must be less than 100"),      
+        salary: Yup.number().required("Required").typeError("Must be a number").min(1, "Must be greater than 0"),
+        age: Yup.number().required("Required").typeError("Must be a number").min(1, "Must be greater than 0").max(100, "Must be less than 100"),      
     });
 
     return (
@@ -45,7 +45,7 @@ const EmployeeFormComponent = (props) => {
                                 </div>
                             </div>  
                             <div className="formik-input-component">
-                                <div className="title-input">Salary</div>
+                                <div className="title-input">Salary (€)</div>
                                 <div className={`input-container ${formik.touched['salary'] && formik.errors['salary'] && "error"}`}>
                                     <Field className="input" type={'number'} name={'salary'} placeholder={'Add salary'}/>
                                 </div>
@@ -54,7 +54,7 @@ const EmployeeFormComponent = (props) => {
                                 </div>
                             </div>
                             <div className="formik-input-component">
-                                <div className="title-input">Age</div>
+                                <div className="title-input">Age (years)</div>
                                 <div className={`input-container ${formik.touched['age'] && formik.errors['age'] && "error"}`}>
                                     <Field className="input" type={'number'} name={'age'} placeholder={'Add age'}/>
                                 </div>
@@ -66,7 +66,7 @@ const EmployeeFormComponent = (props) => {
                                 <Button className="cancel button" text={"Cancel"} onPress={()=>history.push("/employee-list")}/>
                                 <Button type="submit" className="button" text={"Save"} onPress={()=>formik.handleSubmit()}/> 
                             </div>
-                            {submitError && <div className="submit-error">Submit error</div>}
+                            {submitError && <div className="submit-error">{`Submit error. ${submitError}`}</div>}
                         </div>)
                     }
                 }

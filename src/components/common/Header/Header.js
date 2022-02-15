@@ -6,7 +6,7 @@ const HeaderComponent = (props) => {
 
     return (
         <div className="header-component">
-            HEADER
+            Employee APP
         </div>
     );
 };

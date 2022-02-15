@@ -1,13 +1,14 @@
 .employee-form-wrapper{
     width: 50%;
     min-width: 400px;
-    padding: 50px;
+    padding: 45px;
     .button-wrapper{
         margin-top: 20px;
         display: flex;
         justify-content: space-between;
     }
     .submit-error{
-        color: red
+        color: red;
+        margin-top: 15px;
     }
 }

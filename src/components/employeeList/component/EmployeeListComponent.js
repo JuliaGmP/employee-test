@@ -58,7 +58,7 @@ const EmployeeListComponent = (props) => {
                             </td>
                         </tr>
                   )})
-                : <div>Loading...</div>}
+                : loadingError ? <div className="loading error">{`Failed to load. ${loadingError}`}</div> : <div className="loading">Loading...</div>}
             </TableWrapper>
             <ModalFormLayout
                 title="Error when deleting"
@@ -67,13 +67,6 @@ const EmployeeListComponent = (props) => {
                     setDeleteError(false)
                 }}
             />
-            <ModalFormLayout
-                title="Failed to load"
-                show={loadingError}
-                submit={() => {
-                    setLoadingError(false);
-                }}
-            />    
 
         </div>
     );
